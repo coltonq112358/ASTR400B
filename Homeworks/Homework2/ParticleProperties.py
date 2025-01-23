@@ -21,9 +21,3 @@ def ParticleInfo(filename, particle_type, particle_num):
     mass = data['m'][index][particle_num]*u.solMass
 
     return dist, vel, mass
-
-filename = "C:\\Users\\colto\\OneDrive\\Desktop\\ASTR400B\\Homeworks\\Homework2\\MW_000.txt"
-dist, vel, mass = ParticleInfo(filename, 2.0, 99)
-print(dist)
-print(vel)
-print(mass)
