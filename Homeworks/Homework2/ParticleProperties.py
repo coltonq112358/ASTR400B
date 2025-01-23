@@ -4,23 +4,26 @@ from ReadFile import Read
 
 def ParticleInfo(filename, particle_type, particle_num):
     _, _, data = Read(filename)
-    
-    particle_num = int(particle_num)
+    index = np.where(data['type'] == particle_type)[0]
 
-    type_data = np.where(data['type'] == particle_type)
-
-    x = type_data['x'][particle_num]
-    y = type_ddata['y'][particle_num]
-    z = type_ddata['z'][particle_num]
+    x = data['x'][index][particle_num]
+    y = data['y'][index][particle_num]
+    z = data['z'][index][particle_num]
 
     dist = np.sqrt(x**2 + y**2 + z**2)*u.kpc
 
-    vx = type_ddata['vx'][particle_num]
-    vy = type_ddata['vy'][particle_num]
-    vz = type_ddata['vz'][particle_num]
+    vx = data['vx'][index][particle_num]
+    vy = data['vy'][index][particle_num]
+    vz = data['vz'][index][particle_num]
 
-    vel = np.sqrt(vx**2 + vy**2 + z**2)*u.km/u.s
+    vel = np.sqrt(vx**2 + vy**2 + vz**2)*u.km/u.s
 
-    mass = data['m'][particle_num]*u.solMass
+    mass = data['m'][index][particle_num]*u.solMass
 
     return dist, vel, mass
+
+filename = "C:\\Users\\colto\\OneDrive\\Desktop\\ASTR400B\\Homeworks\\Homework2\\MW_000.txt"
+dist, vel, mass = ParticleInfo(filename, 2.0, 99)
+print(dist)
+print(vel)
+print(mass)
