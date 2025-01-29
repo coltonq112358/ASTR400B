@@ -32,6 +32,6 @@ def ParticleInfo(filename, particle_type, particle_num):
     vel = np.sqrt(vx**2 + vy**2 + vz**2)*u.km/u.s
 
     # Determine the mass of the particle
-    mass = data['m'][index][particle_num]*u.solMass
+    mass = data['m'][index][particle_num]*1e10*u.solMass
 
     return dist, vel, mass
