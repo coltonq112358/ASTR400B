@@ -21,7 +21,8 @@ def ParticleInfo(filename, particle_type, particle_num):
     z = data['z'][index][particle_num]
 
     # Determine the distance of the particle
-    dist = np.sqrt(x**2 + y**2 + z**2)*u.kpc
+    # Round to 3 decimal places
+    dist = np.around(np.sqrt(x**2 + y**2 + z**2)*u.kpc, 3)
     
     # Determine the velocity of the particle in x, y, and z
     vx = data['vx'][index][particle_num]
@@ -29,7 +30,8 @@ def ParticleInfo(filename, particle_type, particle_num):
     vz = data['vz'][index][particle_num]
     
     # Determine the magnitude of the velocity of the particle
-    vel = np.sqrt(vx**2 + vy**2 + vz**2)*u.km/u.s
+    # round to 3 decimal places
+    vel = np.around(np.sqrt(vx**2 + vy**2 + vz**2)*u.km/u.s, 3)
 
     # Determine the mass of the particle
     mass = data['m'][index][particle_num]*1e10*u.solMass
