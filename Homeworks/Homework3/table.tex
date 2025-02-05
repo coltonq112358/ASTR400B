@@ -1,16 +1,18 @@
 \documentclass{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{booktabs}
 
 \begin{document}
 
-\begin{tabular}{ | c | c | c | c | c | c | }
-\hline
-    Galaxy Name&Halo Mass&Disk Mass&Bulge Mass&Total &$f_{bar}$\\
-    & ($10^{12}M_\odot$) & ($10^{12}M_\odot$) & ($10^{12}M_\odot$) & ($10^{12}M_\odot$) & \\
-    \hline
-    Milky Way & 1.975 & 0.075 & 0.01 & 2.06 & 0.041\\
-    M31 & 1.921 & 0.12 & 0.019 & 2.06 & 0.067\\
-    M33 & 0.187 & 0.009 & 0.0 & 0.196 & 0.046\\
-\hline
+\begin{tabular}{lrrrrr}
+\toprule
+Galaxy Name & Halo Mass & Disk Mass & Bulge Mass & Total Mass & $f_{bar}$ \\
+& ($10^{12}M_{\odot}$) & ($10^{12}M_{\odot}$) & ($10^{12}M_{\odot}$) & ($10^{12}M_{\odot}$) & \\
+\midrule
+Milky Way & 1.975000 & 0.075000 & 0.010000 & 2.060000 & 0.041000 \\
+M31 & 1.921000 & 0.120000 & 0.019000 & 2.060000 & 0.067000 \\
+M33 & 0.187000 & 0.009000 & 0.000000 & 0.196000 & 0.046000 \\
+\bottomrule
 \end{tabular}
+
+
 \end{document}
