@@ -13,7 +13,7 @@ class CenterOfMass:
     # Class to define COM position and velocity properties 
     # of a given galaxy and simulation snapshot
 
-        def __init__(self, filename, ptype, volDec):
+        def __init__(self, filename, ptype):
             ''' 
             Class to calculate the 6-D phase-space position of a galaxy's center of mass using
             a specified particle type. 
@@ -26,9 +26,6 @@ class CenterOfMass:
                     particle type to use for COM calculations
                 volDec: 'float' Amount to decrease the maximum radius by each iteration.
             '''
-            # Store the volDec
-            self.volDec = volDec
-
             # read data in the given file using Read
             self.time, self.total, self.data = Read(filename)
 
@@ -83,7 +80,7 @@ class CenterOfMass:
             # return the 3 components separately
             return a_com, b_com, c_com
 
-        def COM_P(self, delta):
+        def COM_P(self, delta=0.1, volDec=2):
             '''Method to compute the position of the center of mass of the galaxy 
             using the shrinking-sphere method.
 
@@ -91,6 +88,9 @@ class CenterOfMass:
             ----------
             delta : `float, optional`
                 error tolerance in kpc. Default is 0.1 kpc
+            volDec : 'float'
+                How much to decrease the volume by after each iteration.
+                Default is 2.
             
             RETURNS
             ----------
@@ -121,7 +121,7 @@ class CenterOfMass:
             # find the max 3D distance of all particles from the guessed COM
             # will re-start at the decreased radius (reduced radius)
             # Decrease the radius by the specified volume decrease
-            r_max = max(r_new)/self.volDec
+            r_max = max(r_new)/volDec
             
             # pick an initial value for the change in COM position                                                      
             # between the first guess above and the new one computed from half that volume
@@ -157,7 +157,7 @@ class CenterOfMass:
 
                 # Before loop continues, reset : r_max, particle separations and COM
                 # reduce the volume by the volume decrease specified previously
-                r_max /= self.volDec 
+                r_max /= volDec 
 
                 # Change the frame of reference to the newly computed COM.
                 # subtract the new COM
