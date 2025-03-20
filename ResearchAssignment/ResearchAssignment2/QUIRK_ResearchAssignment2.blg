@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: QUIRK_ResearchAssignment2.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+The style file: aasjournalv7.bst
+Database file #1: QUIRK_ResearchAssignment2.bib
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+You've used 4 entries,
+            3389 wiz_defined-function locations,
+            716 strings with 5726 characters,
+and the built_in function-call counts, 1321 in all, are:
+= -- 121
+> -- 48
+< -- 4
++ -- 16
+- -- 12
+* -- 90
+:= -- 244
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 16
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 65
+empty$ -- 110
+format.name$ -- 20
+if$ -- 266
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 7
+newline$ -- 20
+num.names$ -- 16
+pop$ -- 17
+preamble$ -- 1
+purify$ -- 16
+quote$ -- 0
+skip$ -- 59
+stack$ -- 0
+substring$ -- 52
+swap$ -- 12
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 33
+warning$ -- 0
+while$ -- 12
+width$ -- 0
+write$ -- 47
