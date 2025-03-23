@@ -24,8 +24,8 @@ class CenterOfMass:
                     snapshot file
                 ptype : `int; 1, 2, or 3`
                     particle type to use for COM calculations
-                volDec: 'float' Amount to decrease the maximum radius by each iteration.
             '''
+
             # read data in the given file using Read
             self.time, self.total, self.data = Read(filename)
 
@@ -80,7 +80,7 @@ class CenterOfMass:
             # return the 3 components separately
             return a_com, b_com, c_com
 
-        def COM_P(self, delta=0.1, volDec=2):
+        def COM_P(self, delta):
             '''Method to compute the position of the center of mass of the galaxy 
             using the shrinking-sphere method.
 
@@ -88,9 +88,6 @@ class CenterOfMass:
             ----------
             delta : `float, optional`
                 error tolerance in kpc. Default is 0.1 kpc
-            volDec : 'float'
-                How much to decrease the volume by after each iteration.
-                Default is 2.
             
             RETURNS
             ----------
@@ -108,8 +105,9 @@ class CenterOfMass:
             r_COM = np.sqrt(x_COM**2 + y_COM**2 + z_COM**2)
 
 
-            # iterative process to determine the center of mass
-            # change reference frame to COM frame
+            # iterative process to determine the center of mass                                                            
+
+            # change reference frame to COM frame                                                                          
             # compute the difference between particle coordinates                                                          
             # and the first guess at COM position
             # write your own code below
@@ -118,17 +116,16 @@ class CenterOfMass:
             z_new = self.z - z_COM
             r_new = np.sqrt(x_new**2 + y_new**2 + z_new**2)
 
-            # find the max 3D distance of all particles from the guessed COM
-            # will re-start at the decreased radius (reduced radius)
-            # Decrease the radius by the specified volume decrease
-            r_max = max(r_new)/volDec
+            # find the max 3D distance of all particles from the guessed COM                                               
+            # will re-start at half that radius (reduced radius)                                                           
+            r_max = max(r_new)/2.0
             
             # pick an initial value for the change in COM position                                                      
             # between the first guess above and the new one computed from half that volume
             # it should be larger than the input tolerance (delta) initially
             change = 1000.0
 
-            # start iterative process to determine center of mass position
+            # start iterative process to determine center of mass position                                                 
             # delta is the tolerance for the difference in the old COM and the new one.    
             
             while (change > delta):
@@ -140,8 +137,8 @@ class CenterOfMass:
                 z2 = self.z[index2]
                 m2 = self.m[index2]
 
-                # Refined COM position: 
-                # compute the center of mass position using
+                # Refined COM position:                                                                                    
+                # compute the center of mass position using                                                                
                 # the particles in the reduced radius
                 # write your own code below
                 x_COM2, y_COM2, z_COM2 = self.COMdefine(x2, y2, z2, m2)
@@ -149,17 +146,20 @@ class CenterOfMass:
                 # write your own code below
                 r_COM2 = np.sqrt(x_COM2**2 + y_COM2**2 + z_COM2**2)
 
-                # determine the difference between the previous center of mass position 
-                # and the new one.
+                # determine the difference between the previous center of mass position                                    
+                # and the new one.                                                                                         
                 change = np.abs(r_COM - r_COM2)
-                # uncomment the following line if you want to check this
-                # print ("CHANGE = ", change)
+                # uncomment the following line if you want to check this                                                                                               
+                # print ("CHANGE = ", change)                                                                                     
 
-                # Before loop continues, reset : r_max, particle separations and COM
-                # reduce the volume by the volume decrease specified previously
-                r_max /= volDec 
+                # Before loop continues, reset : r_max, particle separations and COM                                        
 
-                # Change the frame of reference to the newly computed COM.
+                # reduce the volume by a factor of 2 again                                                                 
+                r_max /= 2.0
+                # check this.                                                                                              
+                #print ("maxR", r_max)                                                                                      
+
+                # Change the frame of reference to the newly computed COM.                                                 
                 # subtract the new COM
                 # write your own code below
                 x_new = self.x - x_COM2
@@ -167,13 +167,13 @@ class CenterOfMass:
                 z_new = self.z - z_COM2
                 r_new = np.sqrt(x_new**2 + y_new**2 + z_new**2)
 
-                # set the center of mass positions to the refined values
+                # set the center of mass positions to the refined values                                                   
                 x_COM = x_COM2
                 y_COM = y_COM2
                 z_COM = z_COM2
                 r_COM = r_COM2
 
-                # create an array (np.array) to store the COM position  
+                # create an array (np.array) to store the COM position                                                                                                                                                       
                 p_COM = np.array([x_COM, y_COM, z_COM])
 
             # set the correct units using astropy and round all values
